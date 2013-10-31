@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h2 Class list
+  ul
+    each cl in classes
+      li <a href="/classes/#{cl.name}">#{cl.name}</a>

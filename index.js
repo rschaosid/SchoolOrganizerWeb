@@ -28,8 +28,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/classes', routes.classList);
+app.get('/', routes.ui.home);
+app.get('/classes', routes.ui.classList);
+
+app.post('/api/addClass', routes.api.addClass);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

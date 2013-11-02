@@ -19,3 +19,9 @@ td, th {
 th {
   background-color: #F0F0F0;
 }
+
+ul.nav>li {
+  display: inline-block;
+  padding: 3px;
+  background-color: #F0F0F0;
+}

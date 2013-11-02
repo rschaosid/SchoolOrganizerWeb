@@ -1,6 +1,7 @@
 extends layout
 
-- var pageName = cl.toStringSync();
+block pageName
+  | #{cl.toStringSync()}
 
 block content
   - var students = studentBody.getClassMembersSync(cl).toArraySync();

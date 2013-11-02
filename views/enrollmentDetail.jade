@@ -1,6 +1,7 @@
 extends layout
 
-- var pageName = "Enrollment detail for "+student.toStringSync()+", semester "+semester+", block "+(bloq+1);
+block pageName
+  | Enrollment detail for #{student.toStringSync()}, semester #{semester}, block #{bloq+1}
 
 block content
   - var cl = student.getClassAtSync(semester, bloq)

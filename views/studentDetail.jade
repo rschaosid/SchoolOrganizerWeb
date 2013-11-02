@@ -1,6 +1,7 @@
 extends layout
 
-- var pageName = student.toStringSync();
+block pageName
+  | #{student.toStringSync()};
 
 block content
   h3 Schedule

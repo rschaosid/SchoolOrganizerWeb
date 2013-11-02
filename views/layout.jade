@@ -1,12 +1,14 @@
 doctype 5
 html
   head
-    title= pageName
+    title
+      block pageName
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     h1 School Organizer
     ul
       li <a href="/students">Students</a>
       li <a href="/classes">Classes</a>
-    h2= pageName
+    h2
+      block pageName
     block content

@@ -41,6 +41,7 @@ app.get('/newStudent', routes.ui.newStudent);
 app.get('/enrollment/:studentid/:semester/:block', routes.loadStudent, routes.ui.enrollmentDetail);
 
 app.post('/api/newClass', routes.api.newClass);
+app.post('/api/removeClass', routes.loadClass, routes.api.removeClass);
 app.post('/api/addSession', routes.loadClass, routes.api.addSession);
 app.post('/api/removeSession', routes.loadClass, routes.api.removeSession);
 

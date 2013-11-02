@@ -41,3 +41,7 @@ block content
               input(type="text",name="date",placeholder="day #")
             th(colspan=students.length+1)
               input(type="submit",value="add session")
+  h3 Remove
+    form(method="POST", action="/api/removeClass")
+      input(type="hidden", name="classid", value=cl.hashCodeSync())
+      input(type="submit", value="remove this class")

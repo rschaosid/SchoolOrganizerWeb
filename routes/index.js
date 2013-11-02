@@ -80,6 +80,16 @@ exports.api = {
     res.redirect('/classes');
   },
   
+  removeClass: function(req, res) {
+    if(classes.indexOf(req.cl) > -1)
+      classes.splice(classes.indexOf(req.cl), 1)
+    studentBody.getAllStudentsSync().toArraySync().forEach(function(student) {
+      if(student.isEnrolledSync(req.cl))
+        student.unenrollSync(req.cl);
+    });
+    res.redirect('/classes')
+  },
+  
   addSession: function(req, res) {
     req.cl.addSessionSync(new JavaDate(parseInt(req.body.date)));
     res.redirect('/class/'+req.cl.hashCodeSync());

@@ -1,7 +1,8 @@
 extends layout
 
+- var pageName = "Enrollment detail for "+student.toStringSync()+", semester "+semester+", block "+(bloq+1);
+
 block content
-  h2 Enrollment detail for #{student.toStringSync()}, semester #{semester}, block #{bloq+1}
   - var cl = student.getClassAtSync(semester, bloq)
   if(cl)
     p Enrolled in #{cl.toStringSync()}
@@ -33,5 +34,6 @@ block content
       input(type="hidden", name="block", value=bloq)
       select(name="classid")
         each cm in classes
-          option(value=cm.hashCodeSync())= cm.toStringSync()
+          if(!student.isEnrolledSync(cm))
+            option(value=cm.hashCodeSync())= cm.toStringSync()
       input(type="submit", value="enroll")

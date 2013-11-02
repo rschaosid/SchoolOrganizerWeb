@@ -1,7 +1,8 @@
 extends layout
 
+- var pagename = "New class";
+
 block content
-  h2 New class
-    form(method="POST",action="/api/newClass")
-      input(type="text",name="name",placeholder="Name")
-      input(type="submit",value="Add")
+  form(method="POST",action="/api/newClass")
+    input(type="text",name="name",placeholder="Name")
+    input(type="submit",value="Add")

@@ -1,7 +1,8 @@
 extends layout
 
+- var pageName = "Student list";
+
 block content
-  h2 Student list
   ul
     each student in studentBody.getAllStudentsSync().toArraySync()
       li

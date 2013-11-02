@@ -29,9 +29,29 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.ui.home);
-app.get('/classes', routes.ui.classList);
 
-app.post('/api/addClass', routes.api.addClass);
+app.get('/classes', routes.ui.classList);
+app.get('/class/:classid', routes.loadClass, routes.ui.classDetail);
+app.get('/newClass', routes.ui.newClass);
+
+app.get('/students', routes.ui.studentList);
+app.get('/student/:studentid', routes.loadStudent, routes.ui.studentDetail);
+app.get('/newStudent', routes.ui.newStudent);
+
+app.get('/enrollment/:studentid/:semester/:block', routes.loadStudent, routes.ui.enrollmentDetail);
+
+app.post('/api/newClass', routes.api.newClass);
+app.post('/api/addSession', routes.loadClass, routes.api.addSession);
+app.post('/api/removeSession', routes.loadClass, routes.api.removeSession);
+
+app.post('/api/newStudent', routes.api.newStudent);
+app.post('/api/removeStudent', routes.loadStudent, routes.api.removeStudent);
+
+app.post('/api/enroll', routes.loadStudent, routes.loadClass, routes.api.enroll);
+app.post('/api/unenroll', routes.loadStudent, routes.loadClass, routes.api.unenroll);
+
+app.post('/api/setAttendance', routes.loadStudent, routes.loadClass, routes.api.setAttendance);
+app.post('/api/setGrade', routes.loadStudent, routes.loadClass, routes.api.setGrade);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

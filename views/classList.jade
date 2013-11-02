@@ -4,5 +4,8 @@ block content
   h2 Class list
   ul
     each cl, i in classes
-      li
-        a(href="/classes/#{cl.hash}")= i.toStringSync()
+      if cl
+        li
+          a(href="/class/#{cl.hashCodeSync()}")= cl.toStringSync()
+    li
+      a(href="/newClass") create

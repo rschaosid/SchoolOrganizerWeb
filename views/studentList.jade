@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2 Student list
+  ul
+    each student in studentBody.getAllStudentsSync().toArraySync()
+      li
+        a(href="/student/"+student.hashCodeSync())= student.toStringSync()
+    li
+      a(href="/newStudent") new

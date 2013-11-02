@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h2= student.toStringSync()
+  h3 Schedule
+  table
+    thead
+      tr
+        th Semester
+        th Block 1
+        th Block 2
+        th Block 3
+        th Block 4
+    tbody
+      - for(var sem=0; sem<16; sem++)
+        tr
+          th= sem
+          - for(var bloq=0;bloq<4;bloq++)
+            +enrollmentCell(sem, bloq)
+  h3 Remove
+    form(method="POST", action="/api/removeStudent")
+      input(type="hidden", name="studentid", value=student.hashCodeSync())
+      input(type="submit", value="remove this student")
+
+mixin enrollmentCell(sem, block)
+  - var cl = student.getClassAtSync(sem, bloq);
+  td
+    if cl !== null
+      | #{cl.toStringSync()}
+      if student.getGradeSync(cl)
+        | (#{student.getGradeSync(cl).toStringSync()})
+      | (
+      a(href="/enrollment/"+student.hashCodeSync()+"/"+sem+"/"+bloq) edit
+      | )
+      
+    else
+      | nothing (
+      a(href="/enrollment/"+student.hashCodeSync()+"/"+sem+"/"+bloq) enroll
+      | )

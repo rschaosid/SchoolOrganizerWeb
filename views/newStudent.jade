@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h2 New Student
+  form(method="POST",action="/api/newStudent")
+    input(type="text",name="name",placeholder="Name")
+    input(type="submit",value="Add")

@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h2 Enrollment detail for #{student.toStringSync()}, semester #{semester}, block #{bloq+1}
+  - var cl = student.getClassAtSync(semester, bloq)
+  if(cl)
+    p Enrolled in #{cl.toStringSync()}
+    h3 Grade
+      - var grade=student.getGradeSync(cl)
+      p Grade: #{(grade === null) ? "none" : grade}
+      form(method="POST", action="/api/setGrade")
+        input(type="hidden", name="studentid", value=student.hashCodeSync())
+        input(type="hidden", name="semester", value=semester)
+        input(type="hidden", name="block", value=bloq)
+        input(type="hidden", name="classid", value=cl.hashCodeSync())
+        select(name="grade")
+          option A
+          option B
+          option C
+          option D
+          option F
+        input(type="submit", value="change")
+    h3 Unenroll
+    form(method="POST", action="/api/unenroll")
+      input(type="hidden", name="studentid", value=student.hashCodeSync())
+      input(type="hidden", name="classid", value=cl.hashCodeSync())
+      input(type="submit", value="unenroll")
+  else
+    p Not enrolled in any class
+    form(method="POST", action="/api/enroll")
+      input(type="hidden", name="studentid", value=student.hashCodeSync())
+      input(type="hidden", name="semester", value=semester)
+      input(type="hidden", name="block", value=bloq)
+      select(name="classid")
+        each cm in classes
+          option(value=cm.hashCodeSync())= cm.toStringSync()
+      input(type="submit", value="enroll")
